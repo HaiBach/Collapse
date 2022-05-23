@@ -18,3 +18,15 @@ Phần collapse content sẽ được thiết lập kế tiếp của class `col
   </div>
 </div>
 ```
+
+Mặc định khi collapse chưa active thì sẽ ẩn content.
+Để thiết lập active lúc mặc định, cần thêm class `collapse--ative` vào class `collapse__header`
+
+``` html
+ <div class="collapse">
+  <div class="collapse__header collapse--active">
+    <a class="collapse__toggle" href="#">Button Toggle</a>
+  </div>
+  <div class="collapse__content">...</div>
+</div>
+```
