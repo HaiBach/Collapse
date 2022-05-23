@@ -14,18 +14,20 @@ $(function() {
   var duration = 250
 
   // Function toggle active class
-  var toggleActive = function($check, $target) {
+  var toggleActive = function($header, $target, $toggle) {
     // Case: active
-    if ($check.hasClass(classActive)) {
+    if ($header.hasClass(classActive)) {
+      $toggle.removeClass(classActive)
       $target
         .stop(true)
         .slideUp(duration, function() {
-          $check.removeClass(classActive)
+          $header.removeClass(classActive)
         })
     }
     // Case: no active
     else {
-      $check.addClass(classActive)
+      $toggle.addClass(classActive)
+      $header.addClass(classActive)
       $target
         .stop(true)
         .slideDown(duration)
@@ -35,15 +37,18 @@ $(function() {
   /** SETUP EACH BUTTON TOGGLE **/
   $btnToggle.each(function() {
     var $btn = $(this)
-    var $itemForm = $btn.closest(classHeader)
-    var $contentNext = $itemForm.next()
+    var $header = $btn.closest(classHeader)
+    var $contentNext = $header.next()
+
+    // Add class on the initialization
+    if ($header.hasClass(classActive)) $btn.addClass(classActive)
     
     // Check active class at first
-    // toggleActive($itemForm, $contentNext)
+    // toggleActive($header, $contentNext)
     // Event click on button
     $btn.on('click', function(e) {
       e.preventDefault()
-      toggleActive($itemForm, $contentNext)
+      toggleActive($header, $contentNext, $btn)
     })
   })
 });
